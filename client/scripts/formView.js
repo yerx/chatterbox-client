@@ -8,6 +8,12 @@ var FormView = {
 
   handleSubmit: function(event) {
     // Stop the browser from submitting the form
+    // onClick
+    // post text == Parse.create(event);
+
+    // to encode the data
+    $('#message').text(message);
+
     event.preventDefault();
     // call parse.create();
     console.log('event', event);

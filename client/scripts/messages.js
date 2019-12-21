@@ -1,8 +1,8 @@
 var Messages = {
 
   // counter for total messages
-  var totalMessages = 0;
-  var individualMessage = {};
+  var totalMessages = 0,
+  var individualMessage = {}
   // individualMessage.username;
   // individualMessage.roomname;
   // individualMessage.text;
