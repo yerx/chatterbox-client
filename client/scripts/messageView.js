@@ -4,7 +4,8 @@ var MessageView = {
       <!--
       <div class="chat">
         <div class="username"></div>
-        <div></div>
+        <div class="timeCreatedAt"></div>
+        <div class="message"></div>
       </div>
       -->
     `)
