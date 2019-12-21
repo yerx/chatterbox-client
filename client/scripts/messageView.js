@@ -1,13 +1,11 @@
 var MessageView = {
 
-  render: _.template(`
-      <!--
-      <div class="chat">
-        <div class="username"></div>
-        <div class="timeCreatedAt"></div>
-        <div class="message"></div>
-      </div>
-      -->
-    `)
+  // prevent xss attacks with <div><%- text %></div>
 
+  render: _.template(`
+      <div class="chat">
+        <div class="username"><%- username%></div>
+        <div class="messageText"><%- text %></div>
+      </div>
+  `)
 };

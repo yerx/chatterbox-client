@@ -1,6 +1,6 @@
 var Rooms = {
   // properties
-  // room data
+  // room data -- room name
   // what users are in the room?
   // room created - when?
   // messages that exist in the room / how many

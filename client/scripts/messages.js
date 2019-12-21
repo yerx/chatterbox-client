@@ -1,8 +1,12 @@
 var Messages = {
 
   // counter for total messages
-  var totalMessages = 0,
-  var individualMessage = {}
+  // totalMessages: 0,
+
+
+
+  // Create an update function that will populate a data object
+
   // individualMessage.username;
   // individualMessage.roomname;
   // individualMessage.text;

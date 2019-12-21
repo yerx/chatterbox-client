@@ -8,6 +8,7 @@ var MessagesView = {
 
   initialize: function() {
     // get messages from server
+
     // initialize message view on each up to a limit of X
     // call render on all messages for room
   },
@@ -16,6 +17,10 @@ var MessagesView = {
     // display message block based on time created and
     // if friend
     // do the friend stuff i.e. generate it towards the top or prioritze
+    _.each(Messages, (message) => {
+      var $message = MessageView.render(message);
+      MessagesView.$chats.append($message);
+    });
   }
 
 };

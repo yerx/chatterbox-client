@@ -8,16 +8,24 @@ var FormView = {
 
   handleSubmit: function(event) {
     // Stop the browser from submitting the form
-    // onClick
-    // post text == Parse.create(event);
-
-    // to encode the data
-    $('#message').text(message);
-
     event.preventDefault();
+
+
+    var messageContainer = {};
+    messageContainer.username = App.username;
+    messageContainer.roomname = '';
+    var message = FormView.$form.find('input[name="message"]').val()
+    // var message = $('#message').val();
+    messageContainer.text = message;
+    Parse.create(messageContainer, () => {
+      console.log('Message posted');
+    });
+
+    MessagesView.render();
+
     // call parse.create();
-    console.log('event', event);
-    console.log('click!');
+    // console.log('event', event);
+    // console.log('click!');
   },
 
   setStatus: function(active) {
