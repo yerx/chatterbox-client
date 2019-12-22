@@ -25,17 +25,21 @@ var App = {
       // console.log(data.results);
       // var results = data;
       // let Messages.data = data.results;
-      Messages.data = data.results;
+
+      Messages = data.results;
+      MessagesView.render();
       // console.log(Messages.data);
-      var dataArray = data.results;
-      Rooms.roomnames = [];
-      RoomsView.roomnames = Rooms.roomnames;
-      for (var i = 0; i < dataArray.length; i++) {
-        var currentData = dataArray[i];
-        if (currentData.roomname !== '' && currentData.roomname !== undefined) {
-          Rooms.roomnames.push(dataArray[i].roomname);
-        }
-      }
+      // var dataArray = data.results;
+      Rooms = data.results;
+      // Rooms.roomnames = [];
+      // RoomsView.roomnames = Rooms.roomnames;
+      // for (var i = 0; i < dataArray.length; i++) {
+      //   var currentData = dataArray[i];
+      //   if (currentData.roomname !== '' && currentData.roomname !== undefined) {
+      //     Rooms.roomnames.push(dataArray[i].roomname);
+      //   }
+      // }
+      RoomsView.render();
       callback();
       // return results;
     });

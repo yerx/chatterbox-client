@@ -12,12 +12,14 @@ var FormView = {
 
 
     var messageContainer = {};
+    console.log('USERNAME:', App.username);
     messageContainer.username = App.username;
     messageContainer.roomname = '';
-    var message = FormView.$form.find('input[name="message"]').val()
-    // var message = $('#message').val();
+    // var message = FormView.$form.find('input[name="message"]').val();
+    var message = $('#message').val();
     messageContainer.text = message;
-    Parse.create(messageContainer, () => {
+    Parse.create(messageContainer, (data) => {
+      console.log('data', data);
       console.log('Message posted');
     });
 
