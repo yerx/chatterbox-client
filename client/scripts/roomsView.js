@@ -2,26 +2,47 @@ var RoomsView = {
 
   $button: $('#rooms button'),
   $select: $('#rooms select'),
-  // create a helper function
-  // when user adds a room, delete characters to prevent XSS attacks
-  // deleting/disallow following characters[<, >, # ]
-  filteredRoomList: [],
+
 
   initialize: function() {
-    for (var i = 1; i < Rooms.length; i++) {
-      if (!RoomsView.filteredRoomList.includes(Rooms[i].roomname)) {
-        if (Rooms[i].roomname) { RoomsView.filteredRoomList.push(Rooms[i].roomname); }
-      }
-    }
+    // when a room is selected and btn is clicked, change the room
+    RoomsView.$select.on('change', RoomsView.handleChange);
+    RoomsView.$button.on('click', RoomsView.handleClick);
   },
 
   render: function() {
-    // setRoom
-    for (var i = 0; i < RoomsView.filteredRoomList.length; i++) {
-      RoomsView.$button.append(RoomsView.filteredRoomList[i]);
+
+    RoomsView.$select.html('');
+
+    Rooms
+      .items()
+      // iterate through the rooms
+      .each(RoomsView.renderRoom);
+
+    RoomsView.$select.val(Rooms.selected);
+
+  },
+
+  renderRoom: function(roomname) {
+    var $option = $('<option>').val(roomname).text(roomname);
+    RoomsView.$select.append($option);
+  },
+
+  handleChange: function(event) {
+    // set selected room
+    Rooms.selected = RoomsView.$select.val();
+    // call MessagesView.render() to display messages from selected room
+    MessagesView.render();
+  },
+
+  handleClick: function(event) {
+    var roomname = prompt('Enter room name');
+    if (roomname) {
+      Rooms.add(roomname, () => {
+        RoomsView.render();
+        MessagesView.render();
+      });
     }
-    // populate the drop drop menu with the romm you are on
-    // getMessages for that room and display them in MessagesView
   }
 
 };

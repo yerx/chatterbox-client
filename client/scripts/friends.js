@@ -1,17 +1,21 @@
 var Friends = {
-  // properties
-  // friends list
-  // rooms that friends are in
-  // count of friends
+  _data: new Set,
 
+  items: function() {
+    return _.chain([...Friends._data]);
+  },
 
-  // methods
-  // getFriendsMessage
-  // bold friend's messages
+  isFriend: function(name) {
+    return Friends._data.has(name);
+  },
 
-  // time permitted
-  // directMessageFriend
-
-
-
+  toggleStatus: function(name, callback = () => {}) {
+    if (Friends._data.has(name)) {
+      Friends._data.delete(name);
+      callback(false);
+    } else {
+      Friends._data.add(name);
+      callback(true);
+    }
+  }
 };

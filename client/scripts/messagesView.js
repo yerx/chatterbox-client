@@ -2,25 +2,37 @@ var MessagesView = {
 
   $chats: $('#chats'),
 
-  // create helper function
-  // when user adds a room, delete '<, >' characters to prevent XSS attacks
-
-
   initialize: function() {
-    // get messages from server
-
-    // initialize message view on each up to a limit of X
-    // call render on all messages for room
+    MessagesView.$chats.on('click', '.username', MessagesView.handleClick);
   },
 
   render: function() {
-    // display message block based on time created and
-    // if friend
-    // do the friend stuff i.e. generate it towards the top or prioritze
-    _.each(Messages, (message) => {
-      var $message = MessageView.render(message);
-      MessagesView.$chats.append($message);
-    });
+    MessagesView.$chats.html('');
+
+    Messages
+      .items()
+      .filter(message => Rooms.isSelected(message.roomname))
+      // iterate through the Messages array
+      .each((message) => {
+        // render each message using MessageView.renderMessage(message)
+        MessagesView.renderMessage(message);
+      });
+  },
+
+  renderMessage: function(message) {
+    // render individual message
+    var $message = MessageView.render(message);
+    // prepend individual message to the DOM
+    MessagesView.$chats.prepend($message);
+  },
+
+  handleClick: function(event) {
+    var username = $(event.target).data('username');
+    if (username === undefined) {
+      return;
+    }
+
+    Friends.toggleStatus(username, MessagesView.render);
   }
 
 };

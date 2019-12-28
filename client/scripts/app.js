@@ -21,27 +21,13 @@ var App = {
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
-      // examine the response from the server request:
-      // console.log(data.results);
-      // var results = data;
-      // let Messages.data = data.results;
+      // add an update method to Rooms
+      Rooms.update(data.result, RoomsView.render);
+      // add an update method to Messages to update the view each time new messages are added
+      // pass in callbck to render messages with MessagesView.render();
+      Messages.update(data.results, MessagesView.render);
 
-      Messages = data.results;
-      MessagesView.render();
-      // console.log(Messages.data);
-      // var dataArray = data.results;
-      Rooms = data.results;
-      // Rooms.roomnames = [];
-      // RoomsView.roomnames = Rooms.roomnames;
-      // for (var i = 0; i < dataArray.length; i++) {
-      //   var currentData = dataArray[i];
-      //   if (currentData.roomname !== '' && currentData.roomname !== undefined) {
-      //     Rooms.roomnames.push(dataArray[i].roomname);
-      //   }
-      // }
-      RoomsView.render();
       callback();
-      // return results;
     });
   },
 
